@@ -1,7 +1,17 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contacts/contacts-slice';
+import { getFilteredContacts } from '../../redux/contacts/contacts-selectors';
 import ContactItem from '../ContactItem/ContactItem';
 import style from './ContactList.module.css';
 
-const ContactList = ({ visibleContacts, onDeleteContact }) => {
+const ContactList = () => {
+  const visibleContacts = useSelector(getFilteredContacts);
+  const dispatch = useDispatch();
+  const handleDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
+  };
+
   return (
     <ul className={style.list}>
       {visibleContacts.length !== 0 ? (
@@ -12,7 +22,7 @@ const ContactList = ({ visibleContacts, onDeleteContact }) => {
               id={id}
               name={name}
               number={number}
-              onDeleteContact={onDeleteContact}
+              onDeleteContact={handleDeleteContact}
             />
           );
         })

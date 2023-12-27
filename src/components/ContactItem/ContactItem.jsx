@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number, onDeleteContact }) => {
@@ -15,6 +16,5 @@ const ContactItem = ({ id, name, number, onDeleteContact }) => {
     </li>
   );
 };
-
 
 export default ContactItem;
